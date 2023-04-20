@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-
-import '../../constant/colors_app.dart';
-import '../../constant/strings.dart';
 import '../widgets/custom_Text_inetFace.dart';
 import '../widgets/custom_botton.dart';
 import '../widgets/custom_text_feild.dart';
@@ -17,20 +14,22 @@ class LoginScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         body: Form(
           key: UniqueKey(),
-          child: Container(
-            margin: const EdgeInsets.symmetric(
-              horizontal: 32,
-              vertical: 88,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const CustomTextInterFace(),
-                const SizedBox(height: 110),
-                CustomTextFeiled(),
-                const SizedBox(height: 30),
-                const CustomButton(),
-              ],
+          child: SingleChildScrollView(
+            child: Container(
+              margin: const EdgeInsets.symmetric(
+                horizontal: 32,
+                vertical: 88,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const CustomTextInterFace(),
+                  const SizedBox(height: 110),
+                  CustomTextFeiled(),
+                  const SizedBox(height: 30),
+                  const CustomButton(),
+                ],
+              ),
             ),
           ),
         ),
