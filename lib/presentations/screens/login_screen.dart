@@ -34,7 +34,8 @@ class LoginScreen extends StatelessWidget {
                   const SizedBox(height: 30),
                   CustomButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, otpScreen);
+                        Navigator.pushNamedAndRemoveUntil(
+                            context, otpScreen, (route) => false);
                       },
                       text: 'Next'),
                 ],

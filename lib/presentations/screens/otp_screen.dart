@@ -1,19 +1,20 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import '../../constant/strings.dart';
 import '../widgets/CustomRichText.dart';
 import '../widgets/custom_Text_inetFace.dart';
 import '../widgets/custom_botton.dart';
 import '../widgets/otp.dart';
 
-class OtpScreen extends StatefulWidget {
-  const OtpScreen({super.key});
+class OtpScreen extends StatelessWidget {
+  final String? phoneNumer;
 
-  @override
-  State<OtpScreen> createState() => _OtpScreenState();
-}
+  const OtpScreen({
+    Key? key,
+    this.phoneNumer,
+  }) : super(key: key);
 
-class _OtpScreenState extends State<OtpScreen> {
-  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
@@ -28,8 +29,8 @@ class _OtpScreenState extends State<OtpScreen> {
                   text1: 'What is your phone number', text2: '',
                   // text2: 'Enter your 6 digit numbers send to',
                 ),
-                const CustomRichText(
-                  phoneNumber: '0115285451',
+                CustomRichText(
+                  phoneNumber: '$phoneNumer',
                 ),
                 const SizedBox(height: 90),
                 Otp(),

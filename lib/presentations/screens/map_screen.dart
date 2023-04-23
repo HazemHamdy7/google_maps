@@ -5,6 +5,8 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps/helpers/location_helper.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import '../../bussniss_logic/phone_auth/phone_auth_cubit.dart';
+
 class MapScreen extends StatefulWidget {
   const MapScreen({super.key});
 
@@ -14,7 +16,7 @@ class MapScreen extends StatefulWidget {
 
 //!-1
 class _MapScreenState extends State<MapScreen> {
-  // PhoneauthCubit phoneauthCubit = PhoneauthCubit();
+  PhoneAuthCubit phoneauthCubit = PhoneAuthCubit();
   static Position? position;
   final Completer<GoogleMap> _mapController = Completer();
   static final CameraPosition _myCameraCurrentLocation = CameraPosition(
@@ -23,9 +25,15 @@ class _MapScreenState extends State<MapScreen> {
       zoom: 17,
       target: LatLng(position!.latitude, position!.longitude));
 //!-2
+  // Future<void> getMyCurrentLocation() async {
+  //   await LocationHelper.getLocation();
+  //   position = await Geolocator.getLastKnownPosition().whenComplete(() {
+  //     setState(() {});
+  //   });
+  // }
+
   Future<void> getMyCurrentLocation() async {
-    await LocationHelper.getLocation();
-    position = await Geolocator.getLastKnownPosition().whenComplete(() {
+    position = await LocationHelper.getLocation().whenComplete(() {
       setState(() {});
     });
   }
