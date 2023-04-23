@@ -1,5 +1,6 @@
 const loginScreen = '/';
 const otpScreen = '/otp_screen';
+const mapScreen = '/map_screen';
 
 String generateCountryFlag() {
   //! This function to build the country flag
