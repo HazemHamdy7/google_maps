@@ -21,7 +21,7 @@ class MyDrawer extends StatelessWidget {
           SizedBox(
             height: 350,
             child: DrawerHeader(
-              decoration: BoxDecoration(color: Colors.blue[100]),
+              decoration: const BoxDecoration(color: Colors.white),
               child: buildDrawerHedr(context),
             ),
           ),
@@ -52,10 +52,13 @@ class MyDrawer extends StatelessWidget {
           ),
           const SizedBox(height: 50),
           ListTile(
-            leading: Text(
-              'Follow us ',
-              style: TextStyle(
-                color: Colors.grey[600],
+            leading: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Text(
+                'Follow us ',
+                style: TextStyle(
+                  color: Colors.grey[600],
+                ),
               ),
             ),
           ),
