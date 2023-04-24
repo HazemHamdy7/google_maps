@@ -2,10 +2,14 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:google_maps/constant/colors_app.dart';
 import 'package:google_maps/helpers/location_helper.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
 import '../../bussniss_logic/phone_auth/phone_auth_cubit.dart';
+import '../widgets/my_drawer.dart';
+import '../widgets/search_bar.dart';
 
 class MapScreen extends StatefulWidget {
   const MapScreen({super.key});
@@ -59,6 +63,7 @@ class _MapScreenState extends State<MapScreen> {
   }
 
 //! - 5
+
   Future<void> _goToMyCurrentLocation() async {
     final GoogleMapController controller =
         (await _mapController.future) as GoogleMapController;
@@ -67,16 +72,21 @@ class _MapScreenState extends State<MapScreen> {
         CameraUpdate.newCameraPosition(_myCameraCurrentLocation));
   }
 
+  // //! 6 search bar .....
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer: const MyDrawer(),
         body: Stack(
+          fit: StackFit.expand,
           children: [
             position != null
                 ? buildMap()
                 : const Center(
                     child: CircularProgressIndicator(color: Colors.blue),
-                  )
+                  ),
+            const FloatingSearchbar(),
           ],
         ),
         floatingActionButton: Container(
