@@ -77,7 +77,7 @@ class _MapScreenState extends State<MapScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: const MyDrawer(),
+        drawer: MyDrawer(),
         body: Stack(
           fit: StackFit.expand,
           children: [
