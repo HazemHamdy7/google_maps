@@ -19,7 +19,8 @@ class DottedCircularProgressIndicatorFb extends StatefulWidget {
   final double size; //Width and height of the
   final double dotSize; //Diameter of each dot
   final int secondsPerRotation;
-  final Color currentDotColor; //The color of the dot that "circles" around the indicator
+  final Color
+      currentDotColor; //The color of the dot that "circles" around the indicator
   final Color defaultDotColor; //The color of the dots that aren't animated
 
   @override
@@ -92,10 +93,9 @@ class DottedCircularProgressIndicatorPainterFb extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final double smallestSide = Math.min(size.width, size.height);
-    final double radius = (smallestSide / 2 - dotWidth / 2) - dotWidth/2;
+    final double radius = (smallestSide / 2 - dotWidth / 2) - dotWidth / 2;
     final Offset centerPoint = Offset(size.width / 2, size.height / 2);
 
-    
     final dotPaint = Paint()
       ..style = PaintingStyle.fill
       ..color = dotColor;
@@ -118,7 +118,6 @@ class DottedCircularProgressIndicatorPainterFb extends CustomPainter {
   bool shouldRepaint(DottedCircularProgressIndicatorPainterFb oldDelegate) =>
       oldDelegate.currentDotNum != currentDotNum ? true : false;
 }
-
 
 //  Calculats the offst each dot based on the total number of dots
 class Circle {

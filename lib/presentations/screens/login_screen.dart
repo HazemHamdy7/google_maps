@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_maps/constant/strings.dart';
+import '../../constant/strings.dart';
 import '../widgets/custom_Text_inetFace.dart';
 import '../widgets/custom_botton.dart';
 import '../widgets/custom_text_feild.dart';
@@ -7,7 +7,7 @@ import '../widgets/custom_text_feild.dart';
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
   final GlobalKey<FormState> _phoneFormKey = GlobalKey();
-
+  late String phoneNumber;
   @override
   Widget build(BuildContext context) {
     return SafeArea(

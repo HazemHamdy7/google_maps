@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../bussniss_logic/phone_auth/phone_auth_cubit.dart';
 import '../../constant/colors_app.dart';
 import '../../constant/strings.dart';
 
@@ -70,3 +72,14 @@ class CustomTextFeiled extends StatelessWidget {
     );
   }
 }
+
+// Future<void> _register(BuildContext context) async {
+//   if (!_phoneFormKey.currentState!.validate()) {
+//     Navigator.pop(context);
+//     return;
+//   } else {
+//     Navigator.pop(context);
+//     _phoneFormKey.currentState!.save();
+//     BlocProvider.of<PhoneAuthCubit>(context).submitPhoneNumber(phoneNumber);
+//   }
+// }

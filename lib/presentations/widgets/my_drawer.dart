@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -7,6 +8,8 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../bussniss_logic/phone_auth/phone_auth_cubit.dart';
 import '../../constant/colors_app.dart';
+import '../../constant/custom_snakbar.dart';
+import '../../constant/functions.dart';
 
 class MyDrawer extends StatelessWidget {
   MyDrawer({super.key});
@@ -57,12 +60,17 @@ class MyDrawer extends StatelessWidget {
               child: Text(
                 'Follow us ',
                 style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
                   color: Colors.grey[600],
                 ),
               ),
             ),
           ),
-          buildSocialMediaIcon(),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 50),
+            child: buildSocialMediaIcons(),
+          ),
         ],
       ),
     );
@@ -85,9 +93,13 @@ class MyDrawer extends StatelessWidget {
           'Hazem Hamdy',
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
-        const Text(
-          '01152672868',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        BlocProvider<PhoneAuthCubit>(
+          create: (context) => phoneauthCubit,
+          child: Text(
+            '0111111111',
+            // "${phoneauthCubit.getLoggedInUser().phoneNumber}",
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
         )
       ],
     );
@@ -123,15 +135,23 @@ Widget buildDrawerListItem(
   );
 }
 
-Widget buildIcon(IconData icon, String url) {
-  Future<void> _launchUrl(String url) async {
-    if (!await launchUrl(url as Uri)) {
-      throw Exception('Could not launch $url');
+Widget buildIcon(IconData icon, String url, Color color) {
+  final Uri url = Uri.parse('https://github.com/HazemHamdy7');
+
+  Future<void> lacnchCustomUrl(context, String? url) async {
+    if (url != null) {
+      Uri uri = Uri.parse(url);
+
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri);
+      } else {
+        customSnakBar(context, 'Cannot lanch $url');
+      }
     }
   }
 
   return InkWell(
-    onTap: () => _launchUrl(url),
+    onTap: () => launchUrl(url),
     child: Icon(
       icon,
       color: AppColors.blue,
@@ -140,26 +160,27 @@ Widget buildIcon(IconData icon, String url) {
   );
 }
 
-Widget buildSocialMediaIcon() {
+Widget buildSocialMediaIcons() {
   return Padding(
-    padding: const EdgeInsetsDirectional.symmetric(horizontal: 60),
+    padding: const EdgeInsetsDirectional.only(start: 16),
     child: Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        buildIcon(
-          FontAwesomeIcons.facebook,
-          'https://www.facebook.com/hazem.hamdy.710',
+        buildIcon(FontAwesomeIcons.facebook, 'https://github.com/HazemHamdy7',
+            Colors.blue),
+        const SizedBox(
+          width: 20,
         ),
-        const SizedBox(width: 20),
-        buildIcon(
-          FontAwesomeIcons.youtube,
-          'https://www.youtube.com/channel/UC_3swikJ9wk39Saymm5LvAA',
+        buildIcon(FontAwesomeIcons.youtube,
+            'https://pub.dev/packages/url_launcher', Colors.red),
+        const SizedBox(
+          width: 20,
         ),
-        const SizedBox(width: 20),
         buildIcon(
           FontAwesomeIcons.telegram,
-          'https://telegram.org/dl',
+          'https://t.me/OmarX14',
+          Colors.blue,
         ),
       ],
     ),

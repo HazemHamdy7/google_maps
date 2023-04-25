@@ -1,6 +1,10 @@
-//
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../bussniss_logic/maps/maps_cubit.dart';
+import '../../data/model/plaecsSuggestions.dart';
+import 'place_item.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../constant/colors_app.dart';
 
@@ -14,22 +18,23 @@ class FloatingSearchbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     FloatingSearchBarController controller = FloatingSearchBarController();
-
     final isPortrait =
         MediaQuery.of(context).orientation == Orientation.portrait;
     return FloatingSearchBar(
       builder: (context, transition) {
         return ClipRRect(
             borderRadius: BorderRadius.circular(8),
-            child: Material(
-                color: Colors.white,
-                elevation: 4.0,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: Colors.accents.map((color) {
-                    return Container(height: 112, color: color);
-                  }).toList(),
-                )));
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                buildSeggestionBloc(),
+                Container(
+                  height: 112,
+                  color: Colors.white,
+                ),
+              ],
+            ));
       },
       controller: controller,
       elevation: 6,
@@ -49,7 +54,13 @@ class FloatingSearchbar extends StatelessWidget {
       openAxisAlignment: 0.0,
       width: isPortrait ? 600 : 500,
       debounceDelay: const Duration(microseconds: 500),
-      onQueryChanged: (query) {},
+      onQueryChanged: (query) {
+        void getPlacesSuggestions(String query) {
+          final sessionToken = Uuid().v4();
+          BlocProvider.of<MapsCubit>(context)
+              .emitPlaceSuggestions(query, sessionToken);
+        }
+      },
       onFocusChanged: (isFocused) {},
       transition: CircularFloatingSearchBarTransition(),
       actions: [
@@ -65,4 +76,40 @@ class FloatingSearchbar extends StatelessWidget {
       ],
     );
   }
+}
+
+Widget buildSeggestionBloc() {
+  return BlocBuilder<MapsCubit, MapsState>(
+    builder: (context, state) {
+      if (state is PlacesLoaded) {
+        List<PlaceSuggtion> places = [];
+        if (places.isNotEmpty) {
+          return buildPlacesList();
+        } else {
+          return Container();
+        }
+      } else {
+        return Container();
+      }
+    },
+  );
+}
+
+Widget buildPlacesList() {
+  List<PlaceSuggtion> places = [];
+
+  return ListView.builder(
+      itemCount: places.length,
+      shrinkWrap: true,
+      physics: const ClampingScrollPhysics(),
+      itemBuilder: (context, index) {
+        return InkWell(
+          child: PlacesItem(
+            suggestion: places[index],
+          ),
+          onTap: () {
+            // controller.close();
+          },
+        );
+      });
 }

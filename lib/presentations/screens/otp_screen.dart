@@ -13,6 +13,7 @@ class OtpScreen extends StatelessWidget {
   const OtpScreen({
     Key? key,
     this.phoneNumer,
+    Object? phoneNumber,
   }) : super(key: key);
 
   Widget build(BuildContext context) {

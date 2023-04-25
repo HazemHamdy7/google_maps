@@ -2,6 +2,8 @@ const loginScreen = '/';
 const otpScreen = '/otp_screen';
 const mapScreen = '/map_screen';
 String apiKey = 'AIzaSyAmMVF_LSWqNeuN4zjyfUe5B10RiHPxpaI';
+String suggestionUrl =
+    'https://maps.googleapis.com/maps/api/place/autocomplete/json';
 
 String generateCountryFlag() {
   //! This function to build the country flag

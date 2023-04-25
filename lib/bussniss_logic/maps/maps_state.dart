@@ -1,28 +1,12 @@
-// part of 'maps_cubit.dart';
+part of 'maps_cubit.dart';
 
-// @immutable
-// abstract class MapsState {}
+@immutable
+abstract class MapsState {}
 
-// class MapsInitial extends MapsState {}
+class MapsInitial extends MapsState {}
 
-// class PlacesLoaded extends MapsState {
-//   final List<PlaceSuggestion> places;
+class PlacesLoaded extends MapsState {
+  final List<PlaceSuggtion> places;
 
-//   PlacesLoaded(this.places);
-
-// }
-
-// class PlaceLocationLoaded extends MapsState {
-//   final Place place;
-
-//   PlaceLocationLoaded(this.place);
-
-// }
-
-
-// class DirectionsLoaded extends MapsState {
-//   final PlaceDirections placeDirections;
-
-//   DirectionsLoaded(this.placeDirections);
-
-// }
+  PlacesLoaded(this.places);
+}

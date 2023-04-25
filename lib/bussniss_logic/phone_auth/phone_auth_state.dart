@@ -13,6 +13,6 @@ class ErrorOccurred extends PhoneAuthState {
   ErrorOccurred({required this.errorMsg});
 }
 
-class PhoneNumberSubmited extends PhoneAuthState{}
+class PhoneNumberSubmited extends PhoneAuthState {}
 
-class PhoneOTPVerified extends PhoneAuthState{}
+class PhoneOTPVerified extends PhoneAuthState {}

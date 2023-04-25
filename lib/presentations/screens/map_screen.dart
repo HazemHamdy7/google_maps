@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:google_maps/constant/colors_app.dart';
-import 'package:google_maps/helpers/location_helper.dart';
+import '../../constant/colors_app.dart';
+import '../../helpers/location_helper.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
